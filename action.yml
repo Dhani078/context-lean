@@ -1,0 +1,17 @@
+name: "context-lean action"
+description: "Compress markdown documentation and prompts to eliminate wasted tokens"
+author: "Dhani078"
+inputs:
+  file:
+    description: "Target markdown file to check or compress"
+    required: true
+  command:
+    description: "Command to execute: stats or minify"
+    required: false
+    default: "stats"
+runs:
+  using: "composite"
+  steps:
+    - name: Run context-lean CLI
+      shell: bash
+      run: node ${{ github.action_path }}/bin/context-lean.js ${{ inputs.command }} ${{ inputs.file }}
