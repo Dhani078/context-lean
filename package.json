@@ -1,0 +1,45 @@
+{
+  "name": "context-lean",
+  "version": "1.0.0",
+  "description": "Zero-dependency Markdown and prompt context compressor cutting agent token waste by 30-60%.",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "context-lean": "bin/context-lean.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "SKILL.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node tests/compressor.test.js",
+    "stats": "node bin/context-lean.js stats README.md",
+    "minify": "node bin/context-lean.js minify README.md"
+  },
+  "keywords": [
+    "context-lean",
+    "token-optimization",
+    "prompt-compression",
+    "claude-code",
+    "cursor",
+    "hermes-agent",
+    "llm-context",
+    "markdown-minifier"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Dhani078/context-lean.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dhani078/context-lean/issues"
+  },
+  "homepage": "https://github.com/Dhani078/context-lean#readme",
+  "author": "Dhani078",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
