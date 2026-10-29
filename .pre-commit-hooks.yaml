@@ -1,0 +1,7 @@
+- id: context-lean
+  name: context-lean
+  description: Minify markdown documentation and prompts to cut wasted tokens
+  entry: npx context-lean stats
+  language: node
+  files: \.(md|markdown|txt)$
+  pass_filenames: true
