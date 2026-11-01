@@ -1,8 +1,8 @@
-**Integration Guide**
+Integration Guide
 
 Automating context compression across developer tools and agent frameworks.
 
-**1. Pre-commit Hook**
+1. Pre-commit Hook
 
 Automatically compact documentation files whenever modified:
 
@@ -12,7 +12,7 @@ npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 git add INSTRUCTIONS.md
 ```
 
-**2. CI/CD Token Budget Enforcement**
+2. CI/CD Token Budget Enforcement
 
 Enforce token budget limits in GitHub Actions before deploying prompts:
 
@@ -39,7 +39,7 @@ jobs:
           npx context-lean stats INSTRUCTIONS.md
 ```
 
-**3. Agent Rules & IDE Assistant Setup**
+3. Agent Rules & IDE Assistant Setup
 
 Optimize instructions injected on every turn:
 

@@ -1,4 +1,4 @@
-**Welcome to the Comprehensive Backend Guidelines! 🚀✨**
+Welcome to the Comprehensive Backend Guidelines! 🚀✨
 
 Hello everyone! In this guide we will explore the architecture of our service.
 Basically, it is important to note that you should always configure environment variables properly in order to ensure the database operates reliably.

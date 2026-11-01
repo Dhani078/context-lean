@@ -1,38 +1,38 @@
-**CLI Usage**
+CLI Usage
 
 `context-lean` command-line utility optimizes documentation and prompt context files.
 
-**Syntax**
+Syntax
 
 ```bash
 npx context-lean [command] <file.md> [options]
 ```
 
-**Commands**
+Commands
 
 - `stats <file>`: Analyzes original vs compressed character length, estimated token counts, and token savings percentage.
 - `minify <file>`: Compresses markdown. Prints output directly to `stdout`.
 - `minify <file> -o <out.md>`: Saves compressed markdown directly to specified output file.
 - `--help`, `-h`: Shows command usage help.
 
-**Examples**
+Examples
 
-**Analyze Token Density**
+Analyze Token Density
 ```bash
 npx context-lean stats INSTRUCTIONS.md
 ```
 
-**Compress to stdout**
+Compress to stdout
 ```bash
 npx context-lean minify docs/SYSTEM_PROMPT.md
 ```
 
-**Minify in-place**
+Minify in-place
 ```bash
 npx context-lean minify AGENTS.md -o AGENTS.md
 ```
 
-**Package.json Scripts**
+Package.json Scripts
 ```json
 {
   "scripts": {

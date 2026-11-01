@@ -5,11 +5,11 @@ version: 1.0.1
 author: Dhani078
 ---
 
-**Context Lean Skill**
+Context Lean Skill
 
 Use when maintaining `INSTRUCTIONS.md`, `AGENTS.md`, or system prompt files to prevent context window bloat and reduce token costs.
 
-**Instructions**
+Instructions
 
 1. Before committing or injecting documentation into prompt context, check stats:
    ```bash
