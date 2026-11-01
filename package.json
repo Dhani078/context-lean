@@ -17,9 +17,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "test": "node tests/compressor.test.js",
+    "test": "node scripts/lint.js && node tests/compressor.test.js",
     "stats": "node bin/context-lean.js stats README.md",
-    "minify": "node bin/context-lean.js minify README.md"
+    "minify": "node bin/context-lean.js minify README.md",
+    "lint": "node scripts/lint.js"
   },
   "keywords": [
     "context-lean",
