@@ -1,11 +1,17 @@
 # context-lean
 
-Zero-dependency Markdown and prompt context compressor cutting token waste by 30-60%.
-
+[![GitHub Release](https://img.shields.io/github/v/release/Dhani078/context-lean?color=blue)](https://github.com/Dhani078/context-lean/releases)
 [![CI](https://github.com/Dhani078/context-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhani078/context-lean/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
 [![Node.js >= 20](https://img.shields.io/badge/node-%3E%3D20-green.svg)](#)
+
+---
+
+## Interactive Browser Playground
+
+Test prompt compression live in your browser with real-time tokenomics counters:
+- Open [`playground.html`](playground.html) locally in any web browser.
 
 ---
 
@@ -35,14 +41,18 @@ npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 
 ## Documentation
 
+- [Specification](SPEC.md)
+- [Architecture & Design](docs/ARCHITECTURE.md)
 - [API Reference](docs/API_REFERENCE.md)
-- [CLI Usage](docs/CLI_USAGE.md)
+- [CLI Usage Guide](docs/CLI_USAGE.md)
 - [Integration Guide](docs/INTEGRATION_GUIDE.md)
 - [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Real-World Examples](docs/EXAMPLES.md)
 - [Compression Rules Reference](docs/COMPRESSION_RULES.md)
 - [Benchmarks](docs/BENCHMARKS.md)
-- [Tokenomics](docs/TOKENOMICS.md)
+- [Tokenomics Analysis](docs/TOKENOMICS.md)
 - [Roadmap](docs/ROADMAP.md)
+- [FAQ](docs/FAQ.md)
 
 ## License
 
