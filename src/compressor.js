@@ -27,7 +27,6 @@ export function loadConfig(cwd = process.cwd()) {
 }
 
 export function estimateTokens(text) {
-  // ~4 characters per token heuristic
   return Math.ceil(text.length / 4);
 }
 
@@ -66,8 +65,16 @@ export function compressMarkdown(rawText, config = {}) {
       trimmed = trimmed.replace(pattern, "");
     }
 
-    // Clean multiple spaces
+    // Clean whitespace and trim before punctuation cleanup
     trimmed = trimmed.replace(/[ \t]{2,}/g, " ").trim();
+
+    // Clean orphaned leading punctuation caused by removing opener words
+    trimmed = trimmed.replace(/^[,;:]\s*/, "");
+
+    // Capitalize first letter of line if left lowercase
+    if (trimmed.length > 0 && /^[a-z]/.test(trimmed) && !trimmed.startsWith("http")) {
+      trimmed = trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
+    }
 
     if (trimmed.length > 0) {
       cleanedLines.push(trimmed);
