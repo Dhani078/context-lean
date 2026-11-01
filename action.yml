@@ -1,6 +1,9 @@
 name: "context-lean action"
 description: "Compress markdown documentation and prompts to eliminate wasted tokens"
 author: "Dhani078"
+branding:
+  icon: "zap"
+  color: "purple"
 inputs:
   file:
     description: "Target markdown file to check or compress"

@@ -1,7 +1,7 @@
 ---
 name: context-lean
 description: Minify markdown documentation and agent instructions to cut token usage 30-60% without losing technical substance.
-version: 1.0.0
+version: 1.0.1
 author: Dhani078
 ---
 

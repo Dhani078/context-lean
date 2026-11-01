@@ -1,6 +1,6 @@
 {
   "name": "context-lean",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Zero-dependency Markdown and prompt context compressor cutting agent token waste by 30-60%.",
   "type": "module",
   "main": "src/index.js",
