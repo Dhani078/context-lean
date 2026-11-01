@@ -1,4 +1,4 @@
-# context-lean
+**context-lean**
 
 [![GitHub Release](https://img.shields.io/github/v/release/Dhani078/context-lean?color=blue)](https://github.com/Dhani078/context-lean/releases)
 [![Live Demo](https://img.shields.io/badge/demo-live%20playground-success.svg)](https://dhani078.github.io/context-lean/)
@@ -9,7 +9,7 @@
 
 ---
 
-## Interactive Browser Playground
+**Interactive Browser Playground**
 
 Test prompt compression live in your browser with real-time tokenomics counters:
 - **Live Web App**: [https://dhani078.github.io/context-lean/](https://dhani078.github.io/context-lean/)
@@ -17,18 +17,18 @@ Test prompt compression live in your browser with real-time tokenomics counters:
 
 ---
 
-## Overview
+**Overview**
 
 Compresses `INSTRUCTIONS.md`, `AGENTS.md`, `README.md`, and system prompts by stripping conversational filler, preamble fluff, and multi-byte decorative emojis while preserving code blocks, paths, and technical parameters 100% verbatim.
 
-## Features
+**Features**
 
 - **Zero Dependencies**: Pure Node.js standard library.
 - **Code Block Safety**: Protects all backtick-fenced blocks and inline literals byte-for-byte.
 - **Measurable Token Savings**: Analyzes original and compressed token densities with `stats` command.
 - **CI/CD Ready**: Automates token budget checks and pre-commit hooks.
 
-## Quick Start
+**Quick Start**
 
 ```bash
 # Analyze token count and savings
@@ -41,7 +41,7 @@ npx context-lean minify docs/PROMPT.md
 npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 ```
 
-## Documentation
+**Documentation**
 
 * [Specification](SPEC.md)
 * [Architecture & C4 Model](docs/ARCHITECTURE.md)
@@ -60,6 +60,6 @@ npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 * [Roadmap](docs/ROADMAP.md)
 * [FAQ](docs/FAQ.md)
 
-## License
+**License**
 
 MIT © [Dhani078](https://github.com/Dhani078)

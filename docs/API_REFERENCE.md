@@ -1,22 +1,22 @@
-# API Reference
+**API Reference**
 
 `context-lean` provides a programmatic interface for compressing markdown text and analyzing prompt token density.
 
-## Installation
+**Installation**
 
 ```bash
 npm install --save-dev context-lean
 ```
 
-## Import
+**Import**
 
 ```javascript
 import { analyzeContext, compressMarkdown, RULES } from "context-lean";
 ```
 
-## Functions
+**Functions**
 
-### `compressMarkdown(rawMarkdown: string): string`
+**`compressMarkdown(rawMarkdown: string): string`**
 Applies rule-based context compaction:
 - Strips decorative emojis
 - Trims redundant filler language
@@ -31,7 +31,7 @@ const compressed = compressMarkdown("# Hello! 🚀\n\nBasically we simply need t
 // Returns: "# Hello!\nWe need to run the build."
 ```
 
-### `analyzeContext(rawMarkdown: string): ContextAnalysis`
+**`analyzeContext(rawMarkdown: string): ContextAnalysis`**
 Calculates character counts, token estimates, and token reduction potential.
 
 - **Parameters**: `rawMarkdown` (string)
@@ -42,9 +42,9 @@ const stats = analyzeContext(rawMarkdown);
 console.log(stats);
 ```
 
-## Types
+**Types**
 
-### `ContextAnalysis`
+**`ContextAnalysis`**
 ```typescript
 interface ContextAnalysis {
   originalLength: number;
@@ -56,7 +56,7 @@ interface ContextAnalysis {
 }
 ```
 
-### `CompressionRule`
+**`CompressionRule`**
 ```typescript
 interface CompressionRule {
   id: string;

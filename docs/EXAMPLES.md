@@ -1,12 +1,12 @@
-# Examples
+**Examples**
 
 Before and after minification comparisons using `context-lean`.
 
 ---
 
-### Example 1: Agent Guidelines Document
+**Example 1: Agent Guidelines Document**
 
-#### Before (Original)
+**Before (Original)**
 ```markdown
 # Agent Guidelines 🚀✨
 
@@ -20,7 +20,7 @@ npm run test
 It is really important that all tests pass without errors! 🎉
 ```
 
-#### After (context-lean)
+**After (context-lean)**
 ```markdown
 # Agent Guidelines
 
@@ -41,9 +41,9 @@ Important that all tests pass without errors!
 
 ---
 
-### Example 2: API Contract Documentation
+**Example 2: API Contract Documentation**
 
-#### Before (Original)
+**Before (Original)**
 ```markdown
 ## Authentication Overview 🔑
 
@@ -51,7 +51,7 @@ Actually, in order to authenticate requests, you must pass a Bearer token in the
 Basically, if you do not include this token, the server will simply respond with 401 Unauthorized.
 ```
 
-#### After (context-lean)
+**After (context-lean)**
 ```markdown
 ## Authentication Overview
 

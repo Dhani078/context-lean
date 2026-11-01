@@ -1,4 +1,4 @@
-# Benchmarks
+**Benchmarks**
 
 Compression ratios across real-world developer documentation files.
 

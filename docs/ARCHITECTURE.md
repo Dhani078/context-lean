@@ -1,10 +1,10 @@
-# Architecture: context-lean
+**Architecture: context-lean**
 
 `context-lean` is a deterministic, zero-dependency Markdown and prompt context optimizer that reduces token overhead by 30-60% without altering executable code, file paths, or technical parameters.
 
-## 1. C4 Architecture Model
+**1. C4 Architecture Model**
 
-### Level 1: System Context Diagram
+**Level 1: System Context Diagram**
 
 ```mermaid
 flowchart TD
@@ -15,7 +15,7 @@ flowchart TD
     CLI -->|Token Metrics| Console[Terminal Dashboard]
 ```
 
-### Level 2: Container Diagram
+**Level 2: Container Diagram**
 
 ```mermaid
 flowchart TD
@@ -32,7 +32,7 @@ flowchart TD
     Compressor --> TargetDocs[(Markdown & System Instructions)]
 ```
 
-### Level 3: Component Diagram
+**Level 3: Component Diagram**
 
 ```mermaid
 flowchart TD
@@ -71,7 +71,7 @@ flowchart TD
     Stage3 --> FinalOutput[Minified Context Stream]
 ```
 
-## 2. Sequence Diagram (Quarantine, Minify & Rehydration)
+**2. Sequence Diagram (Quarantine, Minify & Rehydration)**
 
 ```mermaid
 sequenceDiagram
@@ -95,7 +95,7 @@ sequenceDiagram
     CLI->>Dev: Print success confirmation & exit 0
 ```
 
-## 3. Mathematical Model of Prompt Token Density
+**3. Mathematical Model of Prompt Token Density**
 
 Let prompt $P$ be a sequence of linguistic tokens $T = \{t_1, t_2, \dots, t_n\}$. We partition $T$ into:
 
@@ -117,7 +117,7 @@ $$\rho(P') = \frac{|T_{\text{semantic}} \cup T_{\text{code}}|}{|T_{\text{origina
 
 Where typical real-world results yield $\rho(P') \in [0.45, 0.65]$, representing a 35% to 55% token reduction with zero loss of informational entropy.
 
-## 4. Complexity & Execution Performance
+**4. Complexity & Execution Performance**
 
 - **Time Complexity**: $O(M)$ strictly linear time, where $M$ is the character length of the markdown document.
 - **Space Complexity**: $O(M)$ proportional to document length to hold quarantine buffers.

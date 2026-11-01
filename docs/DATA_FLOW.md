@@ -1,8 +1,8 @@
-# Data Flow Architecture: context-lean
+**Data Flow Architecture: context-lean**
 
 Data pipeline and token masking state machine in `context-lean`.
 
-## 1. Stream Processing State Machine
+**1. Stream Processing State Machine**
 
 ```mermaid
 stateDiagram-v2
@@ -18,7 +18,7 @@ stateDiagram-v2
     OutputBuffer --> [*]
 ```
 
-## 2. Token Masking Invariants
+**2. Token Masking Invariants**
 
 To guarantee code and URL safety:
 1. **Fenced Code Blocks**: `/(```[\s\S]*?```)/g` are extracted first to prevent nested inline ticks from corrupting blocks.
