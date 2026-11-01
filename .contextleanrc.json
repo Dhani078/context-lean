@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "stripEmojis": true,
+  "customFluffWords": [
+    "furthermore",
+    "nevertheless",
+    "needless to say"
+  ]
+}

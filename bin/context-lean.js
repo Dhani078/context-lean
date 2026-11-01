@@ -2,7 +2,7 @@
 
 import path from "node:path";
 import fs from "node:fs";
-import { analyzeContext, compressMarkdown } from "../src/compressor.js";
+import { analyzeContext, compressMarkdown, loadConfig } from "../src/compressor.js";
 
 const args = process.argv.slice(2);
 const command = args[0] || "stats";
@@ -32,17 +32,18 @@ if (!fs.existsSync(resolvedPath)) {
   process.exit(1);
 }
 
+const config = loadConfig(process.cwd());
 const rawContent = fs.readFileSync(resolvedPath, "utf-8");
 
 if (command === "stats") {
-  const analysis = analyzeContext(rawContent);
+  const analysis = analyzeContext(rawContent, config);
   console.log(`\n\x1b[36m[context-lean stats]\x1b[0m ${targetFile}`);
   console.log(`  Original Size      : ${analysis.originalLength} chars (~${analysis.originalTokens} tokens)`);
   console.log(`  Compressed Size    : ${analysis.compressedLength} chars (~${analysis.compressedTokens} tokens)`);
   console.log(`  Tokens Saved       : \x1b[32m~${analysis.savedTokens} tokens (${analysis.percentSaved}% reduction)\x1b[0m\n`);
 } else if (command === "minify") {
   const outIndex = args.indexOf("-o");
-  const compressed = compressMarkdown(rawContent);
+  const compressed = compressMarkdown(rawContent, config);
 
   if (outIndex !== -1 && args[outIndex + 1]) {
     const outPath = path.resolve(process.cwd(), args[outIndex + 1]);

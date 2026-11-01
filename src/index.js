@@ -1,1 +1,1 @@
-export { compressMarkdown, estimateTokens, analyzeContext } from "./compressor.js";
+export { compressMarkdown, estimateTokens, analyzeContext, loadConfig } from "./compressor.js";

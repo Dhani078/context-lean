@@ -1,7 +1,10 @@
 // context-lean compressor engine
 // ponytail: rule-based stream compressor; add BPE tokeniser if exact token budgeting is needed.
 
-const FLUFF_PATTERNS = [
+import fs from "node:fs";
+import path from "node:path";
+
+const DEFAULT_FLUFF_PATTERNS = [
   /^(?:sure|certainly|of course|i'd be happy to|in this guide we will)[^.\n]*[.:]/gmi,
   /\b(?:it is important to note that|it should be noted that|please make sure to|keep in mind that)\b/gi,
   /\b(?:in order to|with the purpose of)\b/gi,
@@ -11,12 +14,24 @@ const FLUFF_PATTERNS = [
 
 const EMOJI_REGEX = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
 
+export function loadConfig(cwd = process.cwd()) {
+  const configPath = path.join(cwd, ".contextleanrc.json");
+  if (fs.existsSync(configPath)) {
+    try {
+      return JSON.parse(fs.readFileSync(configPath, "utf-8"));
+    } catch {
+      return {};
+    }
+  }
+  return {};
+}
+
 export function estimateTokens(text) {
   // ~4 characters per token heuristic
   return Math.ceil(text.length / 4);
 }
 
-export function compressMarkdown(rawText) {
+export function compressMarkdown(rawText, config = {}) {
   // 1. Separate fenced code blocks so code is untouched
   const codeBlocks = [];
   const placeholderText = rawText.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (match) => {
@@ -26,6 +41,11 @@ export function compressMarkdown(rawText) {
 
   const lines = placeholderText.split(/\r?\n/);
   const cleanedLines = [];
+
+  const extraFluff = (config.customFluffWords || []).map(
+    w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`, "gi")
+  );
+  const activePatterns = [...DEFAULT_FLUFF_PATTERNS, ...extraFluff];
 
   for (let line of lines) {
     let trimmed = line.trim();
@@ -37,10 +57,12 @@ export function compressMarkdown(rawText) {
     }
 
     // Strip decorative emojis
-    trimmed = trimmed.replace(EMOJI_REGEX, "");
+    if (config.stripEmojis !== false) {
+      trimmed = trimmed.replace(EMOJI_REGEX, "");
+    }
 
     // Apply fluff removal
-    for (const pattern of FLUFF_PATTERNS) {
+    for (const pattern of activePatterns) {
       trimmed = trimmed.replace(pattern, "");
     }
 
@@ -62,9 +84,9 @@ export function compressMarkdown(rawText) {
   return result;
 }
 
-export function analyzeContext(text) {
+export function analyzeContext(text, config = {}) {
   const originalTokens = estimateTokens(text);
-  const compressed = compressMarkdown(text);
+  const compressed = compressMarkdown(text, config);
   const compressedTokens = estimateTokens(compressed);
   const savedTokens = Math.max(0, originalTokens - compressedTokens);
   const percentSaved = originalTokens > 0 ? ((savedTokens / originalTokens) * 100).toFixed(1) : "0.0";

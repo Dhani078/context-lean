@@ -1,0 +1,22 @@
+name: Feature Request
+description: Propose new compression patterns or token reduction strategies
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: Share your ideas for expanding context-lean.
+  - type: textarea
+    id: pattern
+    attributes:
+      label: Target Pattern / Fluff Structure
+      description: What repetitive filler or conversational pattern should be trimmed?
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Expected Token Savings
+      description: How much token context will this save?
+    validations:
+      required: true

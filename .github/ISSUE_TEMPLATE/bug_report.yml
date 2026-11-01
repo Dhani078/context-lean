@@ -1,0 +1,22 @@
+name: Bug Report
+description: Report an issue or unintended text mutation in context-lean
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thank you for helping keep prompts lean! Please provide sample markdown below.
+  - type: textarea
+    id: markdown
+    attributes:
+      label: Markdown Snippet
+      description: The input text that was altered undesirably.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should context-lean have preserved?
+    validations:
+      required: true
