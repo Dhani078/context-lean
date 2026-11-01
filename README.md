@@ -43,18 +43,22 @@ npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 
 ## Documentation
 
-- [Specification](SPEC.md)
-- [Architecture & Design](docs/ARCHITECTURE.md)
-- [API Reference](docs/API_REFERENCE.md)
-- [CLI Usage Guide](docs/CLI_USAGE.md)
-- [Integration Guide](docs/INTEGRATION_GUIDE.md)
-- [Troubleshooting](docs/TROUBLESHOOTING.md)
-- [Real-World Examples](docs/EXAMPLES.md)
-- [Compression Rules Reference](docs/COMPRESSION_RULES.md)
-- [Benchmarks](docs/BENCHMARKS.md)
-- [Tokenomics Analysis](docs/TOKENOMICS.md)
-- [Roadmap](docs/ROADMAP.md)
-- [FAQ](docs/FAQ.md)
+* [Specification](SPEC.md)
+* [Architecture & C4 Model](docs/ARCHITECTURE.md)
+* [Data Flow Architecture](docs/DATA_FLOW.md)
+* [Security Model & Integrity Proofs](docs/SECURITY_MODEL.md)
+* [Token Density & Linguistic Entropy Analysis](docs/TOKEN_DENSITY_ANALYSIS.md)
+* [Latency Impact Study & TTFT Benchmarks](docs/LATENCY_IMPACT_STUDY.md)
+* [API Reference](docs/API_REFERENCE.md)
+* [CLI Usage Guide](docs/CLI_USAGE.md)
+* [Integration Guide](docs/INTEGRATION_GUIDE.md)
+* [Troubleshooting](docs/TROUBLESHOOTING.md)
+* [Real-World Examples](docs/EXAMPLES.md)
+* [Compression Rules Reference](docs/COMPRESSION_RULES.md)
+* [Speed Benchmarks](docs/BENCHMARKS.md)
+* [Tokenomics Analysis](docs/TOKENOMICS.md)
+* [Roadmap](docs/ROADMAP.md)
+* [FAQ](docs/FAQ.md)
 
 ## License
 
