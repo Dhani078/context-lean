@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>context-lean - Interactive Token Compressor</title>
+  <style>
+    :root { --bg: #090d16; --card: #111827; --border: #1f2937; --text: #f3f4f6; --muted: #9ca3af; --accent: #38bdf8; --ok: #34d399; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 24px; }
+    header { max-width: 1000px; margin: 0 auto 20px; }
+    h1 { font-size: 24px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    p { color: var(--muted); font-size: 14px; }
+    .grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+    label { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
+    textarea { width: 100%; height: 260px; background: #030712; border: 1px solid var(--border); border-radius: 6px; color: #e5e7eb; font-family: monospace; font-size: 13px; padding: 12px; resize: vertical; outline: none; }
+    textarea:focus { border-color: var(--accent); }
+    .btn { background: var(--accent); color: #000; border: none; padding: 8px 14px; font-weight: 600; border-radius: 6px; cursor: pointer; align-self: flex-start; }
+    .btn:hover { opacity: 0.9; }
+    .stats { display: flex; gap: 16px; font-size: 13px; background: #030712; padding: 10px 14px; border-radius: 6px; border: 1px solid var(--border); }
+    .stat-val { font-weight: 700; color: var(--ok); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>context-lean Playground</h1>
+    <p>Real-time prompt and documentation compressor saving 30-60% input tokens.</p>
+  </header>
+  <div class="grid">
+    <div class="panel">
+      <label for="input">Original Markdown / Instructions</label>
+      <textarea id="input"># Guidelines 🚀✨
+
+Hello everyone! In this guide we will explain our API.
+Basically, it is important to note that you should always configure environment variables properly in order to ensure the database operates reliably.
+
+Please make sure to keep in mind that credentials must never be committed.
+
+```bash
+npm run test
+```</textarea>
+      <div class="stats">
+        <div>Original: <span id="origTokens" class="stat-val">0</span> tokens</div>
+      </div>
+    </div>
+    <div class="panel">
+      <label for="output">Compressed Context</label>
+      <textarea id="output" readonly></textarea>
+      <div class="stats">
+        <div>Compressed: <span id="compTokens" class="stat-val">0</span> tokens</div>
+        <div>Saved: <span id="savedPercent" class="stat-val">0%</span></div>
+        <button class="btn" style="margin-left:auto;" onclick="navigator.clipboard.writeText(document.getElementById('output').value)">Copy</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const FLUFF = [
+      /^(?:sure|certainly|of course|i'd be happy to|in this guide we will)[^.\n]*[.:]/gmi,
+      /\b(?:it is important to note that|it should be noted that|please make sure to|keep in mind that)\b/gi,
+      /\b(?:in order to|with the purpose of)\b/gi,
+      /\b(?:basically|actually|essentially|simply|just|really)\b/gi,
+      /^(?:hello|welcome to|thanks for using)[^.\n]*[.:]/gmi
+    ];
+    const EMOJI = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
+    function run() {
+      const raw = document.getElementById("input").value;
+      const codes = [];
+      const masked = raw.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, m => { codes.push(m); return `__CODE_${codes.length-1}__`; });
+      let lines = masked.split("\n").map(l => {
+        let t = l.trim().replace(EMOJI, "");
+        FLUFF.forEach(p => { t = t.replace(p, ""); });
+        t = t.replace(/[ \t]{2,}/g, " ").trim().replace(/^[,;:]\s*/, "");
+        if (t.length > 0 && /^[a-z]/.test(t) && !t.startsWith("http")) t = t.charAt(0).toUpperCase() + t.slice(1);
+        return t;
+      }).filter((l, i, arr) => !(l === "" && arr[i-1] === ""));
+      let comp = lines.join("\n").replace(/__CODE_(\d+)__/g, (_, i) => codes[parseInt(i)]);
+      document.getElementById("output").value = comp;
+      const oT = Math.ceil(raw.length / 4);
+      const cT = Math.ceil(comp.length / 4);
+      const sT = Math.max(0, oT - cT);
+      document.getElementById("origTokens").textContent = oT;
+      document.getElementById("compTokens").textContent = cT;
+      document.getElementById("savedPercent").textContent = `${oT > 0 ? ((sT / oT) * 100).toFixed(1) : 0}% (${sT} tokens)`;
+    }
+    document.getElementById("input").addEventListener("input", run);
+    run();
+  </script>
+</body>
+</html>

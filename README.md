@@ -1,6 +1,7 @@
 # context-lean
 
 [![GitHub Release](https://img.shields.io/github/v/release/Dhani078/context-lean?color=blue)](https://github.com/Dhani078/context-lean/releases)
+[![Live Demo](https://img.shields.io/badge/demo-live%20playground-success.svg)](https://dhani078.github.io/context-lean/)
 [![CI](https://github.com/Dhani078/context-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhani078/context-lean/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
@@ -11,7 +12,8 @@
 ## Interactive Browser Playground
 
 Test prompt compression live in your browser with real-time tokenomics counters:
-- Open [`playground.html`](playground.html) locally in any web browser.
+- **Live Web App**: [https://dhani078.github.io/context-lean/](https://dhani078.github.io/context-lean/)
+- Local file: Open [`playground.html`](playground.html) in any browser.
 
 ---
 
