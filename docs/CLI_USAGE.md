@@ -19,7 +19,7 @@ npx context-lean [command] <file.md> [options]
 
 ### Analyze Token Density
 ```bash
-npx context-lean stats CLAUDE.md
+npx context-lean stats INSTRUCTIONS.md
 ```
 
 ### Compress to stdout
@@ -36,8 +36,8 @@ npx context-lean minify AGENTS.md -o AGENTS.md
 ```json
 {
   "scripts": {
-    "optimize:context": "context-lean minify CLAUDE.md -o CLAUDE.md",
-    "check:tokens": "context-lean stats CLAUDE.md"
+    "optimize:context": "context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md",
+    "check:tokens": "context-lean stats INSTRUCTIONS.md"
   }
 }
 ```

@@ -8,8 +8,8 @@ Automatically compact documentation files whenever modified:
 
 ```bash
 # In .husky/pre-commit
-npx context-lean minify CLAUDE.md -o CLAUDE.md
-git add CLAUDE.md
+npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
+git add INSTRUCTIONS.md
 ```
 
 ## 2. CI/CD Token Budget Enforcement
@@ -23,7 +23,7 @@ on:
   push:
     paths:
       - 'prompts/**'
-      - 'CLAUDE.md'
+      - 'INSTRUCTIONS.md'
       - 'AGENTS.md'
 
 jobs:
@@ -36,16 +36,16 @@ jobs:
           node-version: 22
       - name: Verify Token Density
         run: |
-          npx context-lean stats CLAUDE.md
+          npx context-lean stats INSTRUCTIONS.md
 ```
 
-## 3. Cursor Rules & Claude Code Setup
+## 3. Agent Rules & IDE Assistant Setup
 
 Optimize instructions injected on every turn:
 
 ```bash
-# Optimize Cursor rule files
-npx context-lean minify .cursorrules -o .cursorrules
+# Optimize IDE assistant rule files
+npx context-lean minify .rules -o .rules
 
 # Optimize repository agent instructions
 npx context-lean minify AGENTS.md -o AGENTS.md

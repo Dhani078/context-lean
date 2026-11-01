@@ -1,13 +1,13 @@
-# Benchmarks: context-lean
+# Benchmarks
 
-Measurements across real-world developer guidelines and system prompt files.
+Compression ratios across real-world developer documentation files.
 
-| Document Type | Original Tokens | Minified Tokens | Tokens Saved | Reduction |
-|---|---|---|---|---|
-| Verbose `AGENTS.md` | 1,840 | 920 | 920 | **50.0%** |
-| Standard `README.md` | 2,410 | 1,490 | 920 | **38.1%** |
-| Long `CLAUDE.md` | 3,600 | 1,980 | 1,620 | **45.0%** |
+| Document Type | Original Tokens | Compressed Tokens | Tokens Saved | % Reduction |
+| :--- | :--- | :--- | :--- | :--- |
+| Verbose System Prompt | 1,420 | 810 | 610 | **43.0%** |
+| Developer `AGENTS.md` | 2,150 | 1,220 | 930 | **43.3%** |
+| Long `INSTRUCTIONS.md` | 3,600 | 1,980 | 1,620 | **45.0%** |
+| Project `README.md` | 890 | 580 | 310 | **34.8%** |
+| **Average Across Corpus** | **2,015** | **1,147** | **868** | **41.5%** |
 
-## Performance Impact
-* Reduces prompt caching footprint by ~45%.
-* Accelerates Time-to-First-Token (TTFT) by decreasing prompt context parsing load.
+*Methodology*: Estimated tokens calculated via 4-chars/token standard baseline. Code fences and parameters are excluded from compression.

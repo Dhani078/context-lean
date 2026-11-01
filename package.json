@@ -4,12 +4,14 @@
   "description": "Zero-dependency Markdown and prompt context compressor cutting agent token waste by 30-60%.",
   "type": "module",
   "main": "src/index.js",
+  "types": "index.d.ts",
   "bin": {
     "context-lean": "bin/context-lean.js"
   },
   "files": [
     "bin",
     "src",
+    "index.d.ts",
     "SKILL.md",
     "README.md",
     "LICENSE"
@@ -23,9 +25,9 @@
     "context-lean",
     "token-optimization",
     "prompt-compression",
-    "claude-code",
-    "cursor",
-    "hermes-agent",
+    "developer-tools",
+    "context-optimizer",
+    "token-savings",
     "llm-context",
     "markdown-minifier"
   ],

@@ -4,7 +4,7 @@ Understanding the real financial and latency cost of prompt bloat.
 
 ## The Cost of Persistent Context
 
-In agent workflows (Claude Code, Cursor, Copilot, Hermes), context files (`CLAUDE.md`, `AGENTS.md`, system instructions) are sent on **every single LLM turn**:
+In agent workflows, context files (`INSTRUCTIONS.md`, `AGENTS.md`, system instructions) are sent on **every single LLM turn**:
 
 $$\text{Total Cost} = \text{Tokens per File} \times \text{Turns per Session} \times \text{Price per Million Tokens}$$
 

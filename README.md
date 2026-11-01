@@ -1,88 +1,48 @@
 # context-lean
 
-[![CI Status](https://github.com/Dhani078/context-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhani078/context-lean/actions)
+Zero-dependency Markdown and prompt context compressor cutting token waste by 30-60%.
+
+[![CI](https://github.com/Dhani078/context-lean/actions/workflows/ci.yml/badge.svg)](https://github.com/Dhani078/context-lean/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20.0.0-green.svg)](https://nodejs.org/)
-[![Dependencies: 0](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
-
-> Zero-dependency Markdown and prompt context compressor cutting token consumption by 30-60% without losing technical instructions.
-
-Compresses `CLAUDE.md`, `AGENTS.md`, `README.md`, and LLM system prompts by stripping conversational filler, preamble fluff, and multi-byte decorative emojis while preserving code blocks, paths, and technical parameters 100% verbatim.
+[![Zero Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen.svg)](#)
+[![Node.js >= 20](https://img.shields.io/badge/node-%3E%3D20-green.svg)](#)
 
 ---
+
+## Overview
+
+Compresses `INSTRUCTIONS.md`, `AGENTS.md`, `README.md`, and system prompts by stripping conversational filler, preamble fluff, and multi-byte decorative emojis while preserving code blocks, paths, and technical parameters 100% verbatim.
 
 ## Features
 
-* **Code-Safe**: Code fences (```````) and inline backticks are preserved verbatim without altering indentation or characters.
-* **Fluff Stripping**: Removes conversational filler phrases ("Please note that...", "Basically...", "In order to...").
-* **Emoji Pruning**: Eliminates multi-byte unicode emojis that waste 2-4 tokens each in LLM BPE tokenizers.
-* **Zero Dependencies**: Pure Node.js standard library. Fast, deterministic, and offline-ready.
+- **Zero Dependencies**: Pure Node.js standard library.
+- **Code Block Safety**: Protects all backtick-fenced blocks and inline literals byte-for-byte.
+- **Measurable Token Savings**: Analyzes original and compressed token densities with `stats` command.
+- **CI/CD Ready**: Automates token budget checks and pre-commit hooks.
 
----
-
-## Installation & Usage
-
-### 1. Check Token Stats
+## Quick Start
 
 ```bash
-npx context-lean stats CLAUDE.md
+# Analyze token count and savings
+npx context-lean stats INSTRUCTIONS.md
+
+# Minify to stdout
+npx context-lean minify docs/PROMPT.md
+
+# Minify in-place
+npx context-lean minify INSTRUCTIONS.md -o INSTRUCTIONS.md
 ```
-
-### 2. Minify Context
-
-Output to stdout:
-
-```bash
-npx context-lean minify CLAUDE.md
-```
-
-Write directly to file:
-
-```bash
-npx context-lean minify docs/RULES.md -o docs/RULES.lean.md
-```
-
----
-
-## Configuration (`.contextleanrc.json`)
-
-Configure custom fluff patterns or emoji stripping options in `.contextleanrc.json`:
-
-```json
-{
-  "stripEmojis": true,
-  "customFluffWords": [
-    "furthermore",
-    "nevertheless",
-    "needless to say"
-  ]
-}
-```
-
----
-
-## Pre-commit Integration
-
-Add to `.pre-commit-config.yaml`:
-
-```yaml
-repos:
-  - repo: https://github.com/Dhani078/context-lean
-    rev: v1.0.0
-    hooks:
-      - id: context-lean
-```
-
----
 
 ## Documentation
 
-* [Specification](SPEC.md)
-* [Architecture & Flow](docs/ARCHITECTURE.md)
-* [Compression Rules](docs/COMPRESSION_RULES.md)
-* [Token Benchmarks](docs/BENCHMARKS.md)
-
----
+- [API Reference](docs/API_REFERENCE.md)
+- [CLI Usage](docs/CLI_USAGE.md)
+- [Integration Guide](docs/INTEGRATION_GUIDE.md)
+- [Troubleshooting](docs/TROUBLESHOOTING.md)
+- [Compression Rules Reference](docs/COMPRESSION_RULES.md)
+- [Benchmarks](docs/BENCHMARKS.md)
+- [Tokenomics](docs/TOKENOMICS.md)
+- [Roadmap](docs/ROADMAP.md)
 
 ## License
 
