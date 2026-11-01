@@ -13,6 +13,7 @@ const DEFAULT_FLUFF_PATTERNS = [
 ];
 
 const EMOJI_REGEX = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
+const URL_REGEX = /https?:\/\/[^\s<>()"']+/g;
 
 export function loadConfig(cwd = process.cwd()) {
   const configPath = path.join(cwd, ".contextleanrc.json");
@@ -31,12 +32,17 @@ export function estimateTokens(text) {
 }
 
 export function compressMarkdown(rawText, config = {}) {
-  // 1. Separate fenced code blocks so code is untouched
-  const codeBlocks = [];
-  const placeholderText = rawText.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (match) => {
-    codeBlocks.push(match);
-    return `__CODE_BLOCK_${codeBlocks.length - 1}__`;
-  });
+  // 1. Separate fenced code blocks, inline code, and URLs so they remain untouched
+  const protectedBlocks = [];
+  const placeholderText = rawText
+    .replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (match) => {
+      protectedBlocks.push(match);
+      return `__PROTECTED_BLOCK_${protectedBlocks.length - 1}__`;
+    })
+    .replace(URL_REGEX, (match) => {
+      protectedBlocks.push(match);
+      return `__PROTECTED_BLOCK_${protectedBlocks.length - 1}__`;
+    });
 
   const lines = placeholderText.split(/\r?\n/);
   const cleanedLines = [];
@@ -83,9 +89,9 @@ export function compressMarkdown(rawText, config = {}) {
 
   let result = cleanedLines.join("\n");
 
-  // Restore code blocks
-  result = result.replace(/__CODE_BLOCK_(\d+)__/g, (_, idx) => {
-    return codeBlocks[parseInt(idx, 10)];
+  // Restore protected blocks
+  result = result.replace(/__PROTECTED_BLOCK_(\d+)__/g, (_, idx) => {
+    return protectedBlocks[parseInt(idx, 10)];
   });
 
   return result;
